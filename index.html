@@ -12,9 +12,11 @@
     <style>
         :root {
             --primary-color: #032174;  /* Resolution Blue */
-            --text-color: #ffffff;
+            --text-color: white;
             --bg-light: #f4f4f4;
             --bg-dark: #121212;
+            --card-bg: #ffffff;
+            --hover-bg: #f0f0f0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: all 0.3s ease-in-out; }
@@ -22,27 +24,32 @@
 
         /* Dark Theme */
         .dark-theme { background: var(--bg-dark); color: var(--text-color); }
+        .dark-theme .card, .dark-theme .file-card { background: #1a1a1a; color: white; }
+        .dark-theme .file-card:hover { background: #292929; }
+
+        /* Header Section */
+        .header { background: var(--primary-color); color: white; padding: 20px; text-align: center; font-size: 22px; font-weight: bold; }
 
         /* Hero Section */
-        .hero { text-align: center; padding: 100px 20px; background: var(--primary-color); color: white; }
-        .hero h1 { font-size: 48px; margin-bottom: 10px; }
-        .hero p { font-size: 20px; opacity: 0.9; }
-        .hero button { margin-top: 20px; padding: 12px 25px; font-size: 18px; background: white; color: var(--primary-color); border: none; cursor: pointer; border-radius: 5px; }
-        .hero button:hover { background: #ddd; }
+        .hero { text-align: center; padding: 80px 20px; }
+        .hero h1 { font-size: 50px; margin-bottom: 10px; }
+        .hero p { font-size: 20px; opacity: 0.9; margin-bottom: 20px; }
+        .hero button { padding: 12px 25px; font-size: 18px; background: var(--primary-color); color: white; border: none; cursor: pointer; border-radius: 5px; }
+        .hero button:hover { background: #02134d; }
 
         /* Container */
         .container { max-width: 1100px; margin: auto; padding: 40px 20px; text-align: center; }
-        .section-title { font-size: 32px; margin-bottom: 20px; }
 
         /* File Grid */
-        .file-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 0; }
-        .file-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); text-align: left; transition: transform 0.2s ease-in-out; }
-        .file-card:hover { transform: translateY(-5px); }
+        .file-section { background: var(--primary-color); color: white; padding: 60px 20px; }
+        .file-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; }
+        .file-card { background: var(--card-bg); padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); text-align: left; transition: 0.3s ease-in-out; cursor: pointer; }
+        .file-card:hover { background: var(--hover-bg); transform: translateY(-5px); }
         .file-card a { text-decoration: none; color: var(--primary-color); font-weight: bold; display: flex; align-items: center; }
-        .file-card a i { margin-right: 10px; font-size: 20px; }
+        .file-card a i { margin-right: 10px; font-size: 22px; }
 
         /* About Section */
-        .about { padding: 60px 20px; text-align: center; background: var(--primary-color); color: white; }
+        .about { padding: 60px 20px; text-align: center; }
         .about img { width: 120px; border-radius: 50%; margin-bottom: 10px; }
         .about h2 { font-size: 32px; }
 
@@ -63,32 +70,35 @@
 </head>
 <body>
 
+    <!-- Header -->
+    <div class="header">Digital Verification Hub</div>
+
     <!-- Hero Section -->
     <div class="hero">
         <h1>Welcome to Digital Verification Hub</h1>
-        <p>Explore, manage, and access all your design verification files in one place.</p>
-        <button onclick="scrollToSection()">Browse Files</button>
+        <p>Access your design verification files with ease.</p>
+        <button onclick="scrollToFiles()">Browse Files</button>
     </div>
 
     <!-- Theme Switcher -->
     <button class="theme-switcher" onclick="toggleTheme()">Toggle Theme</button>
 
     <!-- File Section -->
-    <div class="container fade-in" id="files">
-        <h2 class="section-title">Available Files</h2>
+    <div class="file-section fade-in" id="files">
+        <h2>Available Files</h2>
         <div class="file-list" id="file-list">Loading files...</div>
     </div>
 
     <!-- About & Creator Section -->
     <div class="about fade-in">
         <img src="your-profile-image.jpg" alt="Profile Picture">
-        <h2>Vivek Malli</h2>
+        <h2>Your Name</h2>
         <p>Digital Verification Engineer | Creator of this repository</p>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        &copy; 2024 Digital Verification Hub | Maintained by Vivek Malli
+        &copy; 2024 Digital Verification Hub | Maintained by Your Name
     </div>
 
     <script>
@@ -107,7 +117,7 @@
         }
 
         // Scroll to Files Section
-        function scrollToSection() {
+        function scrollToFiles() {
             document.getElementById("files").scrollIntoView({ behavior: "smooth" });
         }
 
