@@ -3,23 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Web Page</title>
+    <title>Digital Design Verification Files</title>
 
-    <!-- 🔹 JavaScript Code to Disable Copying -->
-    <script>
-        document.addEventListener('contextmenu', event => event.preventDefault()); // Disable right-click
-
-        document.addEventListener('keydown', function(event) {
-            if (event.ctrlKey && (event.key === 'c' || event.key === 'x' || event.key === 's' || event.key === 'u')) {
-                event.preventDefault(); // Disable Ctrl + C / X / S / U
-                alert("Copying is disabled on this page.");
-            }
-        });
-    </script>
-
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        h1 { color: #0070f3; }
+        ul { list-style: none; padding: 0; }
+        li { margin: 10px 0; padding: 10px; background: #f4f4f4; border-radius: 5px; }
+        a { text-decoration: none; color: #0070f3; font-weight: bold; }
+        a:hover { color: red; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Secure Web Page</h1>
-    <p>Right-clicking and copying are disabled to protect content.</p>
+
+    <h1>📂 Digital Design Verification Files</h1>
+    <p>These files are visible to everyone but cannot be copied, modified, or deleted.</p>
+
+    <h2>Available Files:</h2>
+    <ul id="file-list"></ul>
+
+    <script>
+        const repoOwner = "Vivekmalli2002";  // 🔹 Change this to your GitHub username
+        const repoName = "    Digital-Design-Verification"; // 🔹 Change this to your repository name
+
+        async function loadFiles() {
+            const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
+            const response = await fetch(url);
+            const files = await response.json();
+            const fileList = document.getElementById("file-list");
+
+            files.forEach(file => {
+                if (file.type === "file") {
+                    const li = document.createElement("li");
+                    const a = document.createElement("a");
+                    a.href = file.html_url;  // GitHub file link
+                    a.textContent = file.name;
+                    a.setAttribute("target", "_blank");
+                    li.appendChild(a);
+                    fileList.appendChild(li);
+                }
+            });
+        }
+
+        loadFiles();
+    </script>
+
 </body>
 </html>
