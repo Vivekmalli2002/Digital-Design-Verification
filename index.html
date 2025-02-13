@@ -1,33 +1,170 @@
-<script>
-    // Load the saved theme from local storage
-    document.addEventListener("DOMContentLoaded", function() {
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme) {
-            document.body.classList.add(savedTheme);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Verification Files</title>
+
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: background 0.3s ease-in-out, color 0.3s ease-in-out; }
+        body { background: #f4f4f4; color: black; text-align: center; }
+
+        /* Dark Theme */
+        .dark-theme { background: black; color: white; }
+
+        /* Sidebar */
+        .sidebar { width: 250px; position: fixed; height: 100%; background: #0070f3; padding-top: 20px; left: -250px; transition: 0.3s; }
+        .sidebar a { padding: 15px; display: block; color: white; text-decoration: none; font-size: 18px; font-weight: bold; }
+        .sidebar a:hover { background: #005bb5; }
+        .sidebar-toggle { position: absolute; left: 10px; top: 15px; font-size: 24px; cursor: pointer; color: #0070f3; }
+        .sidebar-open { left: 0; }
+
+        /* Search Bar */
+        .search-container { margin: 20px auto; max-width: 500px; }
+        .search-input { width: 80%; padding: 10px; font-size: 16px; border: 1px solid #ddd; border-radius: 5px; }
+        .search-btn { padding: 10px; font-size: 16px; background: #0070f3; color: white; border: none; cursor: pointer; }
+        .search-btn:hover { background: #005bb5; }
+
+        /* Container & File Grid */
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); margin-top: 20px; }
+        .file-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 0; }
+
+        /* File Cards */
+        .file-card { background: #fff; border-radius: 8px; padding: 15px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); text-align: left; transition: transform 0.2s ease-in-out; }
+        .file-card:hover { transform: scale(1.05); }
+        .file-card a { text-decoration: none; color: #0070f3; font-weight: bold; display: flex; align-items: center; }
+        .file-card a i { margin-right: 10px; color: #0070f3; font-size: 20px; }
+
+        /* Footer */
+        .footer { background: #0070f3; color: white; padding: 15px; margin-top: 20px; font-size: 16px; }
+
+        /* Theme Toggle Button */
+        .theme-switcher { margin-top: 10px; cursor: pointer; font-size: 18px; background: #0070f3; color: white; padding: 5px 10px; border-radius: 5px; border: none; }
+        .theme-switcher:hover { background: #005bb5; }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <a href="javascript:void(0)" onclick="toggleSidebar()">❌ Close</a>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+    <span class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</span>
+
+    <!-- Theme Switcher -->
+    <button class="theme-switcher" onclick="toggleTheme()">Toggle Theme</button>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="search-box" class="search-input" placeholder="Search files...">
+        <button class="search-btn" onclick="searchFiles()">Search</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>📂 Digital Verification Files</h1>
+        <p>These files are visible to everyone but cannot be copied, modified, or deleted.</p>
+
+        <h2>Available Files:</h2>
+        <div class="file-list" id="file-list">Loading files...</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2024 Digital Verification Repository | Maintained by Vivek
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme) {
+                document.body.classList.add(savedTheme);
+            }
+        });
+
+        // Toggle Light/Dark Theme
+        function toggleTheme() {
+            if (document.body.classList.contains("dark-theme")) {
+                document.body.classList.remove("dark-theme");
+                localStorage.setItem("theme", "");
+            } else {
+                document.body.classList.add("dark-theme");
+                localStorage.setItem("theme", "dark-theme");
+            }
         }
-    });
 
-    // Toggle Light/Dark Theme
-    function toggleTheme() {
-        if (document.body.classList.contains("dark-theme")) {
-            document.body.classList.remove("dark-theme");
-            localStorage.setItem("theme", ""); // Save preference
-        } else {
-            document.body.classList.add("dark-theme");
-            localStorage.setItem("theme", "dark-theme"); // Save preference
+        // Toggle Sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("sidebar-open");
         }
-    }
-</script>
 
-<style>
-    /* Default Light Theme */
-    body { background: #f4f4f4; color: black; transition: background 0.3s ease-in-out, color 0.3s ease-in-out; }
-    
-    /* Dark Theme */
-    .dark-theme { background: black; color: white; }
-    
-    .theme-switcher { margin-top: 10px; cursor: pointer; font-size: 18px; background: #0070f3; color: white; padding: 5px 10px; border-radius: 5px; border: none; }
-    .theme-switcher:hover { background: #005bb5; }
-</style>
+        // Search Files
+        function searchFiles() {
+            let query = document.getElementById("search-box").value.toLowerCase();
+            let files = document.querySelectorAll(".file-card");
 
-<button class="theme-switcher" onclick="toggleTheme()">Toggle Theme</button>
+            files.forEach(file => {
+                let fileName = file.textContent.toLowerCase();
+                file.style.display = fileName.includes(query) ? "block" : "none";
+            });
+        }
+
+        window.onload = function() {  
+            const repoOwner = "vivekmalli2002";
+            const repoName = "Digital-Design-Verification";
+
+            async function loadFiles() {
+                try {
+                    const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        throw new Error(`GitHub API Error: ${response.status}`);
+                    }
+
+                    const files = await response.json();
+                    const fileList = document.getElementById("file-list");
+
+                    fileList.innerHTML = ""; 
+
+                    files.forEach(file => {
+                        if (file.type === "file") {  
+                            const fileCard = document.createElement("div");
+                            fileCard.classList.add("file-card");
+
+                            const a = document.createElement("a");
+                            a.href = file.html_url; 
+                            a.textContent = file.name;
+                            a.setAttribute("target", "_blank");
+
+                            const icon = document.createElement("i");
+                            if (file.name.endsWith(".pdf")) icon.classList.add("fas", "fa-file-pdf");
+                            else if (file.name.endsWith(".txt")) icon.classList.add("fas", "fa-file-alt");
+                            else if (file.name.endsWith(".sv")) icon.classList.add("fas", "fa-code");
+                            else icon.classList.add("fas", "fa-file");
+
+                            a.prepend(icon);
+                            fileCard.appendChild(a);
+                            fileList.appendChild(fileCard);
+                        }
+                    });
+
+                } catch (error) {
+                    console.error("Error loading files:", error);
+                }
+            }
+
+            loadFiles();
+        };
+    </script>
+
+</body>
+</html>
