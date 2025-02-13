@@ -11,28 +11,27 @@
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: #f4f4f4; text-align: center; }
+        body { background: var(--bg-color, #f4f4f4); text-align: center; transition: background 0.3s ease-in-out; }
         
-        /* Navbar */
-        .navbar { background: #0070f3; padding: 15px; text-align: center; }
-        .navbar a { color: white; text-decoration: none; font-size: 18px; margin: 10px; font-weight: bold; }
-        .navbar a:hover { text-decoration: underline; }
+        /* Sidebar */
+        .sidebar { width: 250px; position: fixed; height: 100%; background: #0070f3; padding-top: 20px; left: -250px; transition: 0.3s; }
+        .sidebar a { padding: 15px; display: block; color: white; text-decoration: none; font-size: 18px; font-weight: bold; }
+        .sidebar a:hover { background: #005bb5; }
+        .sidebar-toggle { position: absolute; left: 10px; top: 15px; font-size: 24px; cursor: pointer; color: #0070f3; }
+        .sidebar-open { left: 0; }
 
-        /* Search Bar */
-        .search-container { margin: 20px auto; max-width: 500px; }
-        .search-input { width: 80%; padding: 10px; font-size: 16px; border: 1px solid #ddd; border-radius: 5px; }
-        .search-btn { padding: 10px; font-size: 16px; background: #0070f3; color: white; border: none; cursor: pointer; }
-        .search-btn:hover { background: #005bb5; }
-
+        /* Theme Switcher */
+        .theme-switcher { margin-top: 10px; cursor: pointer; font-size: 18px; background: #0070f3; color: white; padding: 5px 10px; border-radius: 5px; border: none; }
+        
         /* Container & File Grid */
-        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); margin-top: 20px; }
         .file-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 0; }
         
         /* File Cards */
         .file-card { background: #fff; border-radius: 8px; padding: 15px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); text-align: left; transition: transform 0.2s ease-in-out; }
         .file-card:hover { transform: scale(1.05); }
         .file-card a { text-decoration: none; color: #0070f3; font-weight: bold; display: flex; align-items: center; }
-        .file-card a i { margin-right: 10px; color: #0070f3; }
+        .file-card a i { margin-right: 10px; color: #0070f3; font-size: 20px; }
 
         /* Footer */
         .footer { background: #0070f3; color: white; padding: 15px; margin-top: 20px; font-size: 16px; }
@@ -40,18 +39,17 @@
 </head>
 <body>
 
-    <!-- Navigation Menu -->
-    <div class="navbar">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <a href="javascript:void(0)" onclick="toggleSidebar()">❌ Close</a>
         <a href="#">Home</a>
         <a href="#">About</a>
         <a href="#">Contact</a>
     </div>
+    <span class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</span>
 
-    <!-- Search Bar -->
-    <div class="search-container">
-        <input type="text" id="search-box" class="search-input" placeholder="Search files...">
-        <button class="search-btn" onclick="searchFiles()">Search</button>
-    </div>
+    <!-- Theme Switcher -->
+    <button class="theme-switcher" onclick="toggleTheme()">Toggle Theme</button>
 
     <!-- Main Content -->
     <div class="container">
@@ -96,8 +94,12 @@
                             a.textContent = file.name;
                             a.setAttribute("target", "_blank");
 
+                            // Determine file icon
                             const icon = document.createElement("i");
-                            icon.classList.add("fas", "fa-file-alt");
+                            if (file.name.endsWith(".pdf")) icon.classList.add("fas", "fa-file-pdf");
+                            else if (file.name.endsWith(".txt")) icon.classList.add("fas", "fa-file-alt");
+                            else if (file.name.endsWith(".sv")) icon.classList.add("fas", "fa-code");
+                            else icon.classList.add("fas", "fa-file");
 
                             a.prepend(icon);
                             fileCard.appendChild(a);
@@ -116,22 +118,23 @@
             }
 
             loadFiles();
-
-            // Search Functionality
-            window.searchFiles = function () {
-                let query = document.getElementById("search-box").value.toLowerCase();
-                let files = document.querySelectorAll(".file-card");
-
-                files.forEach(file => {
-                    let fileName = file.textContent.toLowerCase();
-                    if (fileName.includes(query)) {
-                        file.style.display = "block";
-                    } else {
-                        file.style.display = "none";
-                    }
-                });
-            };
         };
+
+        // Toggle Sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("sidebar-open");
+        }
+
+        // Toggle Light/Dark Theme
+        function toggleTheme() {
+            let currentTheme = document.body.style.background;
+            if (currentTheme === "black") {
+                document.body.style.setProperty('--bg-color', '#f4f4f4');
+            } else {
+                document.body.style.setProperty('--bg-color', 'black');
+            }
+        }
     </script>
 
 </body>
