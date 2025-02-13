@@ -15,8 +15,6 @@
             --text-color: white;
             --bg-light: #f4f4f4;
             --bg-dark: #121212;
-            --card-bg: #ffffff;
-            --hover-bg: #f0f0f0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: all 0.3s ease-in-out; }
@@ -24,8 +22,6 @@
 
         /* Dark Theme */
         .dark-theme { background: var(--bg-dark); color: var(--text-color); }
-        .dark-theme .file-card { background: #1a1a1a; color: white; }
-        .dark-theme .file-card:hover { background: #292929; }
 
         /* Navigation Bar */
         .navbar { 
@@ -35,12 +31,12 @@
             background: var(--primary-color); 
             padding: 10px 20px; 
             color: white; 
-            height: 100px; /* Keep header height fixed */
+            height: 100px; 
         }
 
-        /* Logo Image (Top Left Corner, 3x Larger) */
+        /* Logo Image (Top Left Corner, Large) */
         .logo img { 
-            width: 450px; /* Increased size 3x */
+            width: 450px; /* Large image */
             height: auto; 
             border-radius: 5px; 
         }
@@ -61,80 +57,43 @@
             padding: 8px 12px; 
         }
 
-        .dropdown { 
-            position: relative; 
-            display: inline-block; 
-        }
-
-        .dropdown-content { 
-            display: none; 
-            position: absolute; 
-            background: white; 
-            color: black; 
-            min-width: 180px; 
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
-            z-index: 10;
-        }
-
-        .dropdown-content a { 
-            color: black; 
-            padding: 10px 15px; 
-            display: block; 
-            text-decoration: none; 
-        }
-
-        .dropdown-content a:hover { 
-            background: #ddd; 
-        }
-
-        /* Show Dropdown on Hover */
-        .dropdown:hover .dropdown-content { 
-            display: block; 
-        }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content { display: none; position: absolute; background: white; color: black; min-width: 180px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); z-index: 10; }
+        .dropdown-content a { color: black; padding: 10px 15px; display: block; text-decoration: none; }
+        .dropdown-content a:hover { background: #ddd; }
+        .dropdown:hover .dropdown-content { display: block; }
 
         /* Submenu (Floating) */
-        .sub-dropdown { 
-            position: relative; 
-        }
+        .sub-dropdown { position: relative; }
+        .sub-dropdown-content { display: none; position: absolute; left: 100%; top: 0; background: white; min-width: 180px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); z-index: 10; }
+        .sub-dropdown:hover .sub-dropdown-content { display: block; }
 
-        .sub-dropdown-content { 
-            display: none; 
-            position: absolute; 
-            left: 100%; 
-            top: 0; 
-            background: white; 
-            min-width: 180px; 
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
-            z-index: 10;
-        }
-
-        .sub-dropdown:hover .sub-dropdown-content { 
-            display: block; 
-        }
-
-        /* Profile Section (Right Side) */
-        .profile { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-        }
-
-        .profile img { 
-            width: 40px; 
-            height: 40px; 
-            border-radius: 50%; 
-            border: 2px solid white; 
-        }
+        /* Profile Section */
+        .profile { display: flex; align-items: center; gap: 10px; }
+        .profile img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; }
 
         /* Footer */
-        .footer { 
-            background: var(--primary-color); 
-            color: white; 
-            padding: 20px; 
-            text-align: center; 
-            font-size: 16px; 
-        }
+        .footer { background: var(--primary-color); color: white; padding: 20px; text-align: center; font-size: 16px; }
     </style>
+
+    <!-- Security Script (Disable Copy, Right Click, and Keyboard Shortcuts) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Disable Right Click
+            document.addEventListener("contextmenu", event => event.preventDefault());
+
+            // Disable Text Selection
+            document.addEventListener("selectstart", event => event.preventDefault());
+
+            // Disable Keyboard Shortcuts for Copy, Cut, Save, Inspect
+            document.addEventListener("keydown", function (event) {
+                if (event.ctrlKey && (event.key === "c" || event.key === "x" || event.key === "s" || event.key === "u")) {
+                    alert("Copying and inspecting is disabled!");
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 
