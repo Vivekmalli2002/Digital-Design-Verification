@@ -1,0 +1,26 @@
+FIFO
+----
+Design :
+--------
+
+1. memory : mem - 8 bit data & size 16 
+2. Inputs : Wr,Re,Din,clk,rst
+3. Ouput : Dout,full,empty
+4. Logic :
+    wptr,rptr -- pointers for read & write
+    cnt ----  write - read count
+         at Posedge clk
+           . if rst = 1 : 
+                         wptr <= 0
+                         rptr <= 0
+                         cnt <= 0
+           . if Wr = 1 and !full :
+                         mem[wptr] <= Din
+                         wptr <= wptr+1
+                         cnt <= cnt+ 1
+           . if Re = 1 and !empty :
+                         Dout <= mem[rptr]
+                         rptr <= rptr+1
+                         cnt <= cnt - 1
+    . if (cnt == 0)  full = 0 else 1   // indicates mem is full or not to write
+    . if (cnt == 16) empty = 1 else 0  // indicates mem is empty or not to read
