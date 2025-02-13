@@ -1,0 +1,20 @@
+name: Delete Unauthorized Forks
+on:  
+  schedule:  
+    - cron: "0 */12 * * *"  # Runs every 12 hours
+  workflow_dispatch:  # Allows manual execution
+
+jobs:  
+  remove_forks:  
+    runs-on: ubuntu-latest  
+    steps:  
+      - name: Remove Unauthorized Forks  
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Checking for unauthorized forks..."
+          forks=$(gh repo list Vivekmalli2002 --fork --json name,url | jq -r '.[].name')
+          for repo in $forks; do
+            echo "Deleting unauthorized fork: $repo"
+            gh repo delete YOUR_GITHUB_USERNAME/$repo --yes
+          done
