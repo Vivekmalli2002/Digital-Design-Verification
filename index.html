@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Web Page</title>
+
+    <!-- 🔹 JavaScript Code to Disable Copying -->
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault()); // Disable right-click
+
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && (event.key === 'c' || event.key === 'x' || event.key === 's' || event.key === 'u')) {
+                event.preventDefault(); // Disable Ctrl + C / X / S / U
+                alert("Copying is disabled on this page.");
+            }
+        });
+    </script>
+
+</head>
+<body>
+    <h1>Welcome to My Secure Web Page</h1>
+    <p>Right-clicking and copying are disabled to protect content.</p>
+</body>
+</html>
