@@ -1,27 +1,71 @@
-<script>
-    const repoOwner = "Vivekmalli2002";  // 🔹 Change this to your GitHub username
-    const repoName = "Digital-Design-Verification"; // 🔹 Change this to your repository name
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Design Verification Files</title>
 
-    async function loadFiles() {
-        const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
-        const response = await fetch(url);
-        const files = await response.json();
-        const fileList = document.getElementById("file-list");
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        h1 { color: #0070f3; }
+        ul { list-style: none; padding: 0; }
+        li { margin: 10px 0; padding: 10px; background: #f4f4f4; border-radius: 5px; }
+        a { text-decoration: none; color: #0070f3; font-weight: bold; }
+        a:hover { color: red; }
+    </style>
+</head>
+<body>
 
-        fileList.innerHTML = ""; // Clear old list before loading new files
+    <h1>📂 Digital Design Verification Files</h1>
+    <p>These files are visible to everyone but cannot be copied, modified, or deleted.</p>
 
-        files.forEach(file => {
-            if (file.type === "file") {  // Ensure only files (not folders) are listed
-                const li = document.createElement("li");
-                const a = document.createElement("a");
-                a.href = file.html_url; // Link to file in GitHub
-                a.textContent = file.name;
-                a.setAttribute("target", "_blank");
-                li.appendChild(a);
-                fileList.appendChild(li);
+    <h2>Available Files:</h2>
+    <ul id="file-list">Loading files...</ul>
+
+    <script>
+        window.onload = function() {  
+            const repoOwner = "vivekmalli2002";  // 🔹 Change this to your GitHub username
+            const repoName = "Digital-Design-Verification"; // 🔹 Change this to your repository name
+
+            async function loadFiles() {
+                try {
+                    const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        throw new Error(`GitHub API Error: ${response.status}`);
+                    }
+
+                    const files = await response.json();
+                    const fileList = document.getElementById("file-list");
+
+                    fileList.innerHTML = ""; // Clear previous content
+
+                    files.forEach(file => {
+                        if (file.type === "file") {  
+                            const li = document.createElement("li");
+                            const a = document.createElement("a");
+                            a.href = file.html_url; 
+                            a.textContent = file.name;
+                            a.setAttribute("target", "_blank");
+                            li.appendChild(a);
+                            fileList.appendChild(li);
+                        }
+                    });
+
+                    if (fileList.innerHTML === "") {
+                        fileList.innerHTML = "No files found.";
+                    }
+
+                } catch (error) {
+                    console.error("Error loading files:", error);
+                    document.getElementById("file-list").innerHTML = "Failed to load files.";
+                }
             }
-        });
-    }
 
-    loadFiles();
-</script>
+            loadFiles();
+        };
+    </script>
+
+</body>
+</html>
