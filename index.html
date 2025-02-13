@@ -84,6 +84,26 @@
             display: block; 
         }
 
+        /* Submenu (Floating) */
+        .sub-dropdown { 
+            position: relative; 
+        }
+
+        .sub-dropdown-content { 
+            display: none; 
+            position: absolute; 
+            left: 100%; 
+            top: 0; 
+            background: white; 
+            min-width: 180px; 
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+            z-index: 10;
+        }
+
+        .sub-dropdown:hover .sub-dropdown-content { 
+            display: block; 
+        }
+
         /* Profile Section (Right Side) */
         .profile { 
             display: flex; 
@@ -96,49 +116,6 @@
             height: 40px; 
             border-radius: 50%; 
             border: 2px solid white; 
-        }
-
-        /* File Section */
-        .file-section { 
-            background: var(--primary-color); 
-            color: white; 
-            padding: 60px 20px; 
-            text-align: center;
-        }
-
-        .file-list { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 20px; 
-            padding: 20px; 
-        }
-
-        .file-card { 
-            background: var(--card-bg); 
-            padding: 20px; 
-            border-radius: 10px; 
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
-            text-align: left; 
-            transition: 0.3s ease-in-out; 
-            cursor: pointer; 
-        }
-
-        .file-card:hover { 
-            background: var(--hover-bg); 
-            transform: translateY(-5px); 
-        }
-
-        .file-card a { 
-            text-decoration: none; 
-            color: var(--primary-color); 
-            font-weight: bold; 
-            display: flex; 
-            align-items: center; 
-        }
-
-        .file-card a i { 
-            margin-right: 10px; 
-            font-size: 22px; 
         }
 
         /* Footer */
@@ -167,9 +144,13 @@
             <div class="dropdown">
                 <button class="dropbtn">Digital Logic Designs ▼</button>
                 <div class="dropdown-content">
-                    <a href="#">Combinational Logic</a>
+                    <div class="sub-dropdown">
+                        <a href="#">Combinational Logic ▶</a>
+                        <div class="sub-dropdown-content">
+                            <a href="https://github.com/vivekmalli2002/Digital-Design-Verification/blob/main/FIFO_Design.txt" target="_blank">FIFO_Design.txt</a>
+                        </div>
+                    </div>
                     <a href="#">Sequential Logic</a>
-                    <a href="https://github.com/vivekmalli2002/Digital-Design-Verification/blob/main/FIFO_Design.txt" target="_blank">FIFO Design</a>
                 </div>
             </div>
 
@@ -196,46 +177,10 @@
         </div>
     </header>
 
-    <!-- File Section -->
-    <div class="file-section" id="files">
-        <h2>Available Files</h2>
-        <div class="file-list" id="file-list">Loading files...</div>
-    </div>
-
     <!-- Footer -->
     <div class="footer">
-        &copy; 2025 Digital Verification Hub | Maintained by Vivek Malli
+        &copy; 2025 Digital Verification Hub | Maintained by Your Name
     </div>
-
-    <script>
-        async function loadFiles() {
-            const url = `https://api.github.com/repos/vivekmalli2002/Digital-Design-Verification/contents/`;
-            const response = await fetch(url);
-            const files = await response.json();
-            const fileList = document.getElementById("file-list");
-
-            fileList.innerHTML = "";
-
-            files.forEach(file => {
-                if (![".gitignore", "LICENSE", "index.html", "README.md",".github"].includes(file.name)) {
-                    const fileCard = document.createElement("div");
-                    fileCard.classList.add("file-card");
-
-                    const a = document.createElement("a");
-                    a.href = file.html_url;
-                    a.textContent = file.name;
-                    a.setAttribute("target", "_blank");
-
-                    const icon = document.createElement("i");
-                    icon.classList.add("fas", "fa-file");
-                    a.prepend(icon);
-                    fileCard.appendChild(a);
-                    fileList.appendChild(fileCard);
-                }
-            });
-        }
-        loadFiles();
-    </script>
 
 </body>
 </html>
