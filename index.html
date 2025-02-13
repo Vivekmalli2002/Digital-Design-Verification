@@ -214,8 +214,9 @@
             const fileList = document.getElementById("file-list");
 
             fileList.innerHTML = "";
+
             files.forEach(file => {
-                if (file.type === "file") {
+                if (![".gitignore", "LICENSE", "index.html", "README.md"].includes(file.name)) {
                     const fileCard = document.createElement("div");
                     fileCard.classList.add("file-card");
 
