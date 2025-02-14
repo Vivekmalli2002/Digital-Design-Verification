@@ -19,7 +19,7 @@
             --footer-color: #032174;
             --cta-bg: #ffcc00;
             --cta-text: #146673;
-            --button-color: white; /* New button color */
+            --button-color: #7DF9FF; /* New button color */
         }
 
         * {
@@ -112,6 +112,12 @@
             position: relative;
             z-index: 2;
             border-radius: 5px; /* Rounded corners */
+            display: flex; /* Flexbox for icon and text */
+            align-items: center; /* Center items vertically */
+        }
+
+        .cta-button i {
+            margin-right: 8px; /* Space between icon and text */
         }
 
         .cta-button:hover {
@@ -254,13 +260,16 @@
             <div class="box">
                 <div class="sub-blocks">
                     <div class="sub-block">
-                        <button class="cta-button">Digital Designs</button>
+                        <h4>SV Verification</h4>
+                        <button class="cta-button"><i class="fas fa-check"></i> SV Verification</button>
                     </div>
                     <div class="sub-block">
-                        <button class="cta-button">SV Verification</button>
+                        <h4>UVM Verification</h4>
+                        <button class="cta-button"><i class="fas fa-check"></i> UVM Verification</button>
                     </div>
                     <div class="sub-block">
-                        <button class="cta-button">UVM Verification</button>
+                        <h4>Resume</h4>
+                        <button class="cta-button"><i class="fas fa-file-alt"></i> Resume</button>
                     </div>
                 </div>
             </div>
