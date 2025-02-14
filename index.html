@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,176 +11,210 @@
 
     <style>
         :root {
-            --primary-color: #032174;
+            --primary-color: #032174;  /* Resolution Blue */
             --text-color: white;
             --bg-light: #f4f4f4;
             --bg-dark: #121212;
-            --footer-color: #032174;
-            --cta-bg: #ffcc00;
-            --cta-text: #032174;
+            --header-bg: rgba(3, 33, 116, 0.9);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: all 0.3s ease-in-out; }
+        body { background: var(--bg-light); color: black; }
+
+        /* Navigation Bar */
+        .navbar { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            background: var(--header-bg); 
+            padding: 15px 0; 
+            position: fixed; 
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-color);
-        }
-
-        /* Header */
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 20px 0;
+        .nav-links {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 30px;
+            position: relative;
         }
 
-        header .logo img {
-            width: 200px;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        header nav a {
-            color: white;
-            margin: 0 20px;
+        .nav-links a {
             text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 15px;
+            position: relative;
         }
 
-        header nav a:hover {
-            color: #ffcc00;
+        .nav-links a:hover {
+            background: white;
+            color: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        /* Dropdown Styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            border-radius: 5px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 15px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background: #ddd;
+        }
+
+        /* Floating Submenu for FIFO_Design.txt */
+        .sub-dropdown {
+            position: relative;
+        }
+
+        .sub-dropdown-content {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            border-radius: 5px;
+        }
+
+        .sub-dropdown:hover .sub-dropdown-content {
+            display: block;
         }
 
         /* Hero Section */
         .hero {
-            background: url('https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg') center/cover no-repeat;
-            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            flex-direction: column;
+            height: 80vh;
+            background: linear-gradient(135deg, #032174, #0056b3);
             color: white;
+            text-align: center;
+            padding: 20px;
         }
 
         .hero h1 {
-            font-size: 50px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
+            font-size: 40px; /* Decreased from 50px */
+            margin-bottom: 10px;
         }
 
         .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
+            font-size: 18px; /* Decreased from 22px */
+            opacity: 0.9;
+            max-width: 800px;
         }
 
-        .cta-button {
-            background-color: var(--cta-bg);
-            color: var(--cta-text);
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #e0a800;
-        }
-
-        /* Content Section */
-        .content {
-            padding: 60px 20px;
+        /* Resume Section */
+        .resume-section {
             text-align: center;
+            padding: 80px 20px;
+            background: var(--bg-light);
         }
 
-        .content h2 {
+        .resume-section h2 {
             font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
-        .content p {
+        .resume-btn {
+            display: inline-block;
+            padding: 12px 25px;
             font-size: 18px;
-            color: #333;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--footer-color);
+            font-weight: bold;
             color: white;
-            padding: 20px 0;
+            background: #0056b3;
+            border: 2px solid white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .resume-btn:hover {
+            background: #0045a3;
+        }
+
+        /* License Section */
+        .license {
             text-align: center;
-        }
-
-        footer p {
+            padding: 20px;
             font-size: 14px;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 35px;
-            }
-
-            .content h2 {
-                font-size: 28px;
-            }
-
-            .cta-button {
-                font-size: 16px;
-                padding: 12px 25px;
-            }
+            background: var(--primary-color);
+            color: white;
+            margin-top: 50px;
         }
     </style>
 </head>
-
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="logo">
-            <img src="https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg" alt="Logo">
-        </div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Digital Logic Designs</a>
-            <a href="#">System Verilog Verification</a>
-            <a href="#">UVM Verification</a>
-            <a href="#">Resume</a>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <nav class="nav-links">
+            <a href="https://github.com/vivekmalli2002">GitHub</a>
+            
+            <div class="dropdown">
+                <a href="#">Digital Logic Designs ▼</a>
+                <div class="dropdown-content">
+                    <div class="sub-dropdown">
+                        <a href="#">Combinational Logic ▶</a>
+                        <div class="sub-dropdown-content">
+                            <a href="https://github.com/vivekmalli2002/Digital-Design-Verification/blob/main/FIFO_Design.txt" target="_blank">FIFO_Design.txt</a>
+                        </div>
+                    </div>
+                    <a href="#">Sequential Logic</a>
+                </div>
+            </div>
+
+            <a href="#">System Verilog</a>
+            <a href="#">UVM</a>
+            <a href="#resume">Resume</a>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <div class="hero">
-        <div>
-            <h1>Welcome to My Digital Verification Hub</h1>
-            <p>Take a look at my work and explore the verification process!</p>
-            <button class="cta-button">Explore Now</button>
-        </div>
-    </div>
+    <section class="hero">
+        <h1>Welcome to My Digital Verification Hub</h1>
+        <p>Explore my work in Digital Logic Designs, System Verilog, and UVM Verification. Learn from my projects and research.</p>
+    </section>
 
-    <!-- Content Section -->
-    <div class="content">
-        <p>Discover how you can speed up your verification processes with the latest tools and techniques. Explore my work and the projects I’ve created over the years.</p>
-    </div>
+    <!-- Resume Section -->
+    <section class="resume-section" id="resume">
+        <h2>My Resume</h2>
+        <p>View my experience, skills, and projects.</p>
+        <a href="your-resume-link.pdf" target="_blank" class="resume-btn">View Resume</a>
+    </section>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2025 Digital Verification Hub | Maintained by Vivek Malli</p>
+    <!-- License Section -->
+    <footer class="license">
+        &copy; 2025 Digital Verification Hub | Licensed under CC BY-NC-ND 4.0
     </footer>
 
 </body>
-
 </html>
