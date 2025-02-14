@@ -15,9 +15,11 @@
             --primary-color: #032174;
             --text-color: white;
             --bg-light: #f4f4f4;
+            --bg-dark: #121212;
             --footer-color: #032174;
-            --cta-bg: white;
-            --cta-text: black;
+            --cta-bg: #ffcc00;
+            --cta-text: #146673;
+            --button-color: white; /* New button color */
         }
 
         * {
@@ -38,33 +40,29 @@
             color: white;
             padding: 20px 0;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
             position: relative;
             z-index: 10;
         }
 
-        header nav {
-            display: flex;
-            gap: 20px;
-        }
-
         header nav a {
             color: white;
+            margin: 0 20px;
             text-decoration: none;
             font-size: 16px;
             font-weight: 600;
-            padding: 10px 15px;
             transition: all 0.3s ease;
         }
 
         header nav a:hover {
-            color: #3c8eb0;
+            color: #ffcc00;
         }
 
         /* Hero Section */
         .hero {
             background: url('https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg') center/cover no-repeat;
-            height: 80vh;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -84,30 +82,24 @@
             z-index: 1;
         }
 
-        .hero h1, .hero p, .hero .box {
+        .hero h1 {
+            font-size: 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
             position: relative;
             z-index: 2;
         }
 
-        .hero h1 {
-            font-size: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
         .hero p {
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
         }
 
-        /* CTA Buttons */
-        .box {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
+        /* CTA Button Style */
         .cta-button {
             background-color: var(--cta-bg);
             color: var(--cta-text);
@@ -116,36 +108,87 @@
             border: none;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+            position: relative;
+            z-index: 2;
+            border-radius: 5px; /* Rounded corners */
         }
 
         .cta-button:hover {
-            background-color: #146673;
-            transform: scale(1.1);
+            background-color: #146673; /* Change to the specified color on hover */
+            transform: scale(1.1); /* Scale up the button */
         }
 
-        /* File Display Section */
-        #file-container {
+        /* Content Section */
+        .content {
+            padding: 60px 20px;
             text-align: center;
-            padding: 20px;
         }
 
-        #file-container h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
+        .content h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
         }
 
-        .file-item {
+        .content p {
             font-size: 18px;
-            color: black;
-            background: #fff;
-            padding: 10px;
-            margin: 5px auto;
-            max-width: 400px;
-            border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            user-select: none; /* Prevent text selection */
+            color: #333;
+        }
+
+        /* Box Style */
+        .box {
+            background-color: transparent; /* Set background to transparent */
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px; /* Adjusted width */
+            text-align: center;
+            position: relative; /* Ensure it sits above the background */
+            z-index: 2; /* Ensure box is above the overlay */
+        }
+
+        /* Sub-Block Style */
+        .sub-blocks {
+            display: flex; /* Use flexbox for horizontal layout */
+            justify-content: space-between; /* Space between sub-blocks */
+            margin-top: 10px; /* Space above sub-blocks */
+        }
+
+        .sub-block {
+            flex: 1; /* Allow sub-blocks to grow equally */
+            margin: 0 5px; /* Space between sub-blocks */
+            text-align: center; /* Center text in sub-blocks */
+        }
+
+        .sub-block h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .sub-block p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Button Style for Sub-Blocks */
+        .sub-block .cta-button {
+            background-color: var(--button-color); /* Use the new button color */
+            color: var(--primary-color); /* Text color */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        .sub-block .cta-button:hover {
+            background-color: #00a3e0; /* Darker shade on hover */
+            transform: scale(1.1); /* Scale up the button */
         }
 
         /* Footer */
@@ -156,31 +199,35 @@
             text-align: center;
         }
 
-        /* Disable Copy, Right-Click, and Keyboard Shortcuts */
-        body {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+        footer p {
+            font-size: 14px;
         }
 
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .box {
-                flex-direction: column;
-            }
-
             .hero h1 {
-                font-size: 25px;
+                font-size: 35px;
+            }
+
+            .content h2 {
+                font-size: 28px;
             }
 
             .cta-button {
                 font-size: 16px;
                 padding: 12px 25px;
+            }
+
+            .box {
+                max-width: 90%; /* Make box wider on smaller screens */
+            }
+
+            .sub-block {
+                margin: 5px 0; /* Stack sub-blocks vertically on small screens */
+            }
+
+            .sub-blocks {
+                flex-direction: column; /* Change to column layout on small screens */
             }
         }
     </style>
@@ -190,7 +237,7 @@
     <!-- Header Section -->
     <header>
         <nav>
-            <a href="#">Profile</a>
+            <a href="#">Home</a>
             <a href="#">Digital Logic Designs</a>
             <a href="#">System Verilog Verification</a>
             <a href="#">UVM Verification</a>
@@ -203,50 +250,28 @@
         <div>
             <h1>Welcome to My Digital Verification Hub</h1>
             <p>Take a look at my work and explore the verification process!</p>
+            <!-- Box Example -->
             <div class="box">
-                <button class="cta-button" onclick="showFiles('Digital-Logic-Designs')">Digital Designs</button>
-                <button class="cta-button" onclick="showFiles('SV-Verification')">SV Verification</button>
-                <button class="cta-button" onclick="showFiles('UVM-Verification')">UVM Verification</button>
+                <div class="sub-blocks">
+                    <div class="sub-block">
+                        <button class="cta-button">Digital Designs</button>
+                    </div>
+                    <div class="sub-block">
+                        <button class="cta-button">SV Verification</button>
+                    </div>
+                    <div class="sub-block">
+                        <button class="cta-button">UVM Verification</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- File Display Section -->
-    <div id="file-container"></div>
 
     <!-- Footer Section -->
     <footer>
         <p>&copy; 2025 Digital Verification Hub | Maintained by Vivek Malli</p>
     </footer>
 
-    <!-- JavaScript for File Display and Security -->
-    <script>
-        function showFiles(category) {
-            let files = {
-                "Digital-Logic-Designs": ["Text.txt"],
-                "SV-Verification": ["Text.txt"],
-                "UVM-Verification": ["Text.txt"]
-            };
-
-            let container = document.getElementById("file-container");
-            container.innerHTML = "<h3>" + category.replace('-', ' ') + " Files</h3>";
-
-            files[category].forEach(file => {
-                let fileElement = document.createElement("div");
-                fileElement.classList.add("file-item");
-                fileElement.textContent = file;
-                container.appendChild(fileElement);
-            });
-        }
-
-        document.addEventListener("contextmenu", event => event.preventDefault());
-        document.addEventListener("keydown", event => {
-            if (event.ctrlKey && ["c", "s", "x", "u"].includes(event.key)) {
-                alert("Copying and saving is restricted!");
-                event.preventDefault();
-            }
-        });
-    </script>
-
 </body>
+
 </html>
