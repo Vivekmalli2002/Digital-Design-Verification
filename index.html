@@ -41,14 +41,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative; /* Added for positioning */
-            z-index: 10; /* Ensure header is above the hero */
-        }
-
-        header .logo img {
-            width: 200px;
-            height: auto;
-            border-radius: 8px;
+            position: relative;
+            z-index: 10;
         }
 
         header nav a {
@@ -67,13 +61,13 @@
         /* Hero Section */
         .hero {
             background: url('https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg') center/cover no-repeat;
-            height: 100vh; /* Full viewport height */
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: white;
-            position: relative; /* Added for positioning */
+            position: relative;
         }
 
         .hero::before {
@@ -83,8 +77,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
-            z-index: 1; /* Ensure overlay is below the content */
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
         .hero h1 {
@@ -93,15 +87,15 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 20px;
-            position: relative; /* Position relative to overlay */
-            z-index: 2; /* Ensure text is above the overlay */
+            position: relative;
+            z-index: 2;
         }
 
         .hero p {
             font-size: 20px;
             margin-bottom: 30px;
-            position: relative; /* Position relative to overlay */
-            z-index: 2; /* Ensure text is above the overlay */
+            position: relative;
+            z-index: 2;
         }
 
         .cta-button {
@@ -113,8 +107,8 @@
             cursor: pointer;
             font-weight: 600;
             transition: background-color 0.3s ease;
-            position: relative; /* Position relative to overlay */
-            z-index: 2; /* Ensure button is above the overlay */
+            position: relative;
+            z-index: 2;
         }
 
         .cta-button:hover {
@@ -136,6 +130,44 @@
         .content p {
             font-size: 18px;
             color: #333;
+        }
+
+        /* Box Style */
+        .box {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px; /* Adjust width as needed */
+            text-align: center;
+        }
+
+        .box h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .box p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .box .box-button {
+            background-color: var(--cta-bg);
+            color: var(--cta-text);
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .box .box-button:hover {
+            background-color: #e0a800;
         }
 
         /* Footer */
@@ -171,9 +203,7 @@
 <body>
     <!-- Header Section -->
     <header>
-        <div class="logo">
-            <img src="https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg" alt="Logo">
-        </div>
+        <div class="logo">My Logo</div>
         <nav>
             <a href="#">Home</a>
             <a href="#">Digital Logic Designs</a>
@@ -189,9 +219,19 @@
             <h1>Welcome to My Digital Verification Hub</h1>
             <p>Take a look at my work and explore the verification process!</p>
             <button class="cta-button">Explore Now</button>
+        </div>
+    </div>
 
-            <p>Discover how you can speed up your verification processes with the latest tools and techniques </p>
-            <p>Explore my work and the projects I’ve created over the years.</p>
+    <!-- Content Section -->
+    <div class="content">
+        <h2>GitHub Copilot is now available for free</h2>
+        <p>Discover how you can speed up your verification processes with the latest tools and techniques. Explore my work and the projects I’ve created over the years.</p>
+        
+        <!-- Box Example -->
+        <div class="box">
+            <h3>Feature Title</h3>
+            <p>This is a brief description of the feature or service offered. It highlights the key benefits and encourages users to take action.</p>
+            <button class="box-button">Learn More</button>
         </div>
     </div>
 
