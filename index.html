@@ -41,6 +41,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative; /* Added for positioning */
+            z-index: 10; /* Ensure header is above the hero */
         }
 
         header .logo img {
@@ -65,12 +67,24 @@
         /* Hero Section */
         .hero {
             background: url('https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg') center/cover no-repeat;
-            height: 80vh;
+            height: 100vh; /* Full viewport height */
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: white;
+            position: relative; /* Added for positioning */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
+            z-index: 1; /* Ensure overlay is below the content */
         }
 
         .hero h1 {
@@ -79,11 +93,15 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 20px;
+            position: relative; /* Position relative to overlay */
+            z-index: 2; /* Ensure text is above the overlay */
         }
 
         .hero p {
             font-size: 20px;
             margin-bottom: 30px;
+            position: relative; /* Position relative to overlay */
+            z-index: 2; /* Ensure text is above the overlay */
         }
 
         .cta-button {
@@ -95,6 +113,8 @@
             cursor: pointer;
             font-weight: 600;
             transition: background-color 0.3s ease;
+            position: relative; /* Position relative to overlay */
+            z-index: 2; /* Ensure button is above the overlay */
         }
 
         .cta-button:hover {
