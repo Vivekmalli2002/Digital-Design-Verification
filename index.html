@@ -139,7 +139,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin: 20px auto;
-            max-width: 400px; /* Adjust width as needed */
+            max-width: 600px; /* Adjust width as needed */
             text-align: center;
             position: relative; /* Ensure it sits above the background */
             z-index: 2; /* Ensure box is above the overlay */
@@ -147,29 +147,29 @@
 
         .box h3 {
             font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        /* Sub-Block Style */
+        .sub-block {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .sub-block h4 {
+            font-size: 20px;
             margin-bottom: 10px;
             color: var(--primary-color);
         }
 
-        .box p {
+        .sub-block p {
             font-size: 16px;
-            margin-bottom: 20px;
             color: #555;
-        }
-
-        .box .box-button {
-            background-color: var(--cta-bg);
-            color: var(--cta-text);
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            border-radius: 5px;
-        }
-
-        .box .box-button:hover {
-            background-color: #e0a800;
         }
 
         /* Footer */
@@ -231,9 +231,19 @@
         
         <!-- Box Example -->
         <div class="box">
-            <h3>Feature Title</h3>
-            <p>This is a brief description of the feature or service offered. It highlights the key benefits and encourages users to take action.</p>
-            <button class="box-button">Learn More</button>
+            <h3>My Services</h3>
+            <div class="sub-block">
+                <h4>SV Verification</h4>
+                <p>Details about SV Verification services offered.</p>
+            </div>
+            <div class="sub-block">
+                <h4>UVM Verification</h4>
+                <p>Details about UVM Verification services offered.</p>
+            </div>
+            <div class="sub-block">
+                <h4>Resume</h4>
+                <p>Details about the resume services offered.</p>
+            </div>
         </div>
     </div>
 
