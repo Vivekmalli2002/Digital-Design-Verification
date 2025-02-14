@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +14,7 @@
             --primary-color: #032174;
             --text-color: white;
             --bg-light: #f4f4f4;
-            --bg-dark: #121212;
             --footer-color: #032174;
-            --cta-bg: #ffcc00;
-            --cta-text: #032174;
         }
 
         * {
@@ -30,126 +26,90 @@
 
         body {
             background-color: var(--bg-light);
-            color: var(--text-color);
+            color: black;
         }
 
-        /* Header */
+        /* Centered Header */
         header {
             background-color: var(--primary-color);
             color: white;
-            padding: 15px 0; /* Reduced from 20px */
+            padding: 15px 0;
+            text-align: center;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        header .logo img {
-            width: 180px; /* Reduced from 200px */
+        .logo img {
+            width: 150px;
             height: auto;
             border-radius: 8px;
         }
 
-        header nav a {
-            color: white;
-            margin: 0 15px; /* Reduced spacing */
-            text-decoration: none;
-            font-size: 14px; /* Reduced from 16px */
-            font-weight: 600;
-            transition: all 0.3s ease;
+        nav {
+            margin-top: 10px;
         }
 
-        header nav a:hover {
-            color: #ffcc00;
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 15px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background: white;
+            color: var(--primary-color);
+            border-radius: 5px;
         }
 
         /* Hero Section */
         .hero {
-            background: url('https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg') center/cover no-repeat;
-            height: 75vh; /* Reduced from 80vh */
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            flex-direction: column;
+            height: 75vh;
+            background: linear-gradient(135deg, #032174, #0056b3);
             color: white;
+            text-align: center;
+            padding: 20px;
         }
 
         .hero h1 {
-            font-size: 40px; /* Reduced from 50px */
+            font-size: 40px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px; /* Reduced spacing */
+            letter-spacing: 1px;
             margin-bottom: 15px;
         }
 
         .hero p {
-            font-size: 16px; /* Reduced from 20px */
+            font-size: 16px;
             margin-bottom: 20px;
-        }
-
-        .cta-button {
-            background-color: var(--cta-bg);
-            color: var(--cta-text);
-            padding: 12px 25px; /* Reduced from 15px 30px */
-            font-size: 16px; /* Reduced from 18px */
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #e0a800;
-        }
-
-        /* Content Section */
-        .content {
-            padding: 50px 20px; /* Reduced from 60px */
-            text-align: center;
-        }
-
-        .content h2 {
-            font-size: 28px; /* Reduced from 32px */
-            font-weight: 600;
-            margin-bottom: 25px; /* Reduced from 30px */
-        }
-
-        .content p {
-            font-size: 16px; /* Reduced from 18px */
-            color: #333;
         }
 
         /* Footer */
         footer {
             background-color: var(--footer-color);
             color: white;
-            padding: 15px 0; /* Reduced from 20px */
+            padding: 15px 0;
             text-align: center;
         }
 
         footer p {
-            font-size: 12px; /* Reduced from 14px */
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 30px; /* Reduced from 35px */
-            }
-
-            .content h2 {
-                font-size: 24px; /* Reduced from 28px */
-            }
-
-            .cta-button {
-                font-size: 14px; /* Reduced from 16px */
-                padding: 10px 20px; /* Adjusted button size */
-            }
+            font-size: 12px;
         }
     </style>
 </head>
 
 <body>
-    <!-- Header Section -->
+
+    <!-- Header Section (Centered) -->
     <header>
         <div class="logo">
             <img src="https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg" alt="Logo">
@@ -165,17 +125,8 @@
 
     <!-- Hero Section -->
     <div class="hero">
-        <div>
-            <h1>Welcome to My Digital Verification Hub</h1>
-            <p>Take a look at my work and explore the verification process!</p>
-            <button class="cta-button">Explore Now</button>
-        </div>
-    </div>
-
-    <!-- Content Section -->
-    <div class="content">
-        <h2>GitHub Copilot is now available for free</h2>
-        <p>Discover how you can speed up your verification processes with the latest tools and techniques. Explore my work and the projects I’ve created over the years.</p>
+        <h1>Welcome to My Digital Verification Hub</h1>
+        <p>Take a look at my work and explore the verification process!</p>
     </div>
 
     <!-- Footer Section -->
@@ -184,5 +135,4 @@
     </footer>
 
 </body>
-
 </html>
