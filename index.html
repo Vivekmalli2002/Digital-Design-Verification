@@ -19,7 +19,7 @@
             --footer-color: #032174;
             --cta-bg: #ffcc00;
             --cta-text: #004F5C;
-            --button-color: white; /* New button color */
+            --button-color: #7DF9FF; /* New button color */
         }
 
         * {
@@ -99,7 +99,9 @@
             z-index: 2;
         }
 
+        /* CTA Button Style */
         .cta-button {
+            position: relative;
             background-color: var(--cta-bg);
             color: var(--cta-text);
             padding: 15px 30px;
@@ -108,13 +110,42 @@
             cursor: pointer;
             font-weight: 600;
             transition: background-color 0.3s ease;
-            position: relative;
-            z-index: 2;
             border-radius: 5px; /* Rounded corners */
+            overflow: hidden; /* Hide overflow for pseudo-elements */
+            z-index: 2;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.5), rgba(255, 165, 0, 0.5));
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: fire 1.5s infinite;
+            z-index: 1;
+        }
+
+        @keyframes fire {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
         }
 
         .cta-button:hover {
-            background-color: #146673;
+            background-color: #146673; /* Change to the specified color on hover */
         }
 
         /* Content Section */
@@ -136,7 +167,7 @@
 
         /* Box Style */
         .box {
-            background-color: ;
+            background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -239,7 +270,6 @@
 <body>
     <!-- Header Section -->
     <header>
-        <div class="logo">My Logo</div>
         <nav>
             <a href="#">Home</a>
             <a href="#">Digital Logic Designs</a>
@@ -256,14 +286,18 @@
             <p>Take a look at my work and explore the verification process!</p>
             <!-- Box Example -->
             <div class="box">
+                <h3>My Services</h3>
                 <div class="sub-blocks">
                     <div class="sub-block">
+                        <h4>SV Verification</h4>
                         <button class="cta-button">SV Verification</button>
                     </div>
                     <div class="sub-block">
+                        <h4>UVM Verification</h4>
                         <button class="cta-button">UVM Verification</button>
                     </div>
                     <div class="sub-block">
+                        <h4>Resume</h4>
                         <button class="cta-button">Resume</button>
                     </div>
                 </div>
