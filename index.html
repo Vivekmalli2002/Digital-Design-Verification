@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +14,7 @@
             --primary-color: #032174;
             --text-color: white;
             --bg-light: #f4f4f4;
-            --bg-dark: #121212;
             --footer-color: #032174;
-            --cta-bg: #ffcc00;
-            --cta-text: #032174;
         }
 
         * {
@@ -30,151 +26,173 @@
 
         body {
             background-color: var(--bg-light);
-            color: var(--text-color);
+            color: black;
+            overflow-x: hidden; /* Prevents horizontal scroll */
         }
 
-        /* Header */
+        /* Centered Header */
         header {
             background-color: var(--primary-color);
             color: white;
-            padding: 15px 0; /* Reduced from 20px */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        header .logo img {
-            width: 180px; /* Reduced from 200px */
-            height: auto;
-            border-radius: 8px;
+        nav {
+            display: inline-block;
         }
 
-        header nav a {
-            color: white;
-            margin: 0 15px; /* Reduced spacing */
+        nav a {
             text-decoration: none;
-            font-size: 14px; /* Reduced from 16px */
-            font-weight: 600;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 15px;
+            margin: 0 10px;
             transition: all 0.3s ease;
         }
 
-        header nav a:hover {
-            color: #ffcc00;
+        nav a:hover {
+            background: white;
+            color: var(--primary-color);
+            border-radius: 5px;
         }
 
         /* Hero Section */
         .hero {
-            background: url('https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg') center/cover no-repeat;
-            height: 75vh; /* Reduced from 80vh */
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            flex-direction: column;
+            height: 75vh;
+            background: linear-gradient(135deg, #032174, #0056b3);
             color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 80px;
         }
 
         .hero h1 {
-            font-size: 40px; /* Reduced from 50px */
+            font-size: 40px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px; /* Reduced spacing */
+            letter-spacing: 1px;
             margin-bottom: 15px;
         }
 
         .hero p {
-            font-size: 16px; /* Reduced from 20px */
+            font-size: 16px;
             margin-bottom: 20px;
         }
 
-        .cta-button {
-            background-color: var(--cta-bg);
-            color: var(--cta-text);
-            padding: 12px 25px; /* Reduced from 15px 30px */
-            font-size: 16px; /* Reduced from 18px */
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #e0a800;
-        }
-
-        /* Content Section */
-        .content {
-            padding: 50px 20px; /* Reduced from 60px */
+        /* Resume Section */
+        .resume-section {
             text-align: center;
+            padding: 80px 20px;
+            background: var(--bg-light);
         }
 
-        .content h2 {
-            font-size: 28px; /* Reduced from 32px */
-            font-weight: 600;
-            margin-bottom: 25px; /* Reduced from 30px */
+        .resume-section h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
         }
 
-        .content p {
-            font-size: 16px; /* Reduced from 18px */
-            color: #333;
+        .resume-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: #0056b3;
+            border: 2px solid white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .resume-btn:hover {
+            background: #0045a3;
+        }
+
+        /* Floating Chatbot */
+        .chatbot-skin {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            bottom: 50px;
+            right: 50px;
+            animation: floatAround 12s infinite linear;
+        }
+
+        .chatbot-message {
+            position: absolute;
+            bottom: 120px;
+            left: -10px;
+            background: white;
+            color: black;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(50vw, 20vh); }
+            50% { transform: translate(30vw, -10vh); }
+            75% { transform: translate(-20vw, 15vh); }
+            100% { transform: translate(0, 0); }
         }
 
         /* Footer */
         footer {
             background-color: var(--footer-color);
             color: white;
-            padding: 15px 0; /* Reduced from 20px */
+            padding: 15px 0;
             text-align: center;
         }
 
         footer p {
-            font-size: 12px; /* Reduced from 14px */
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 10px; /* Reduced from 35px */
-            }
-
-            .content h2 {
-                font-size: 24px; /* Reduced from 28px */
-            }
-
-            .cta-button {
-                font-size: 14px; /* Reduced from 16px */
-                padding: 10px 20px; /* Adjusted button size */
-            }
+            font-size: 12px;
         }
     </style>
 </head>
 
 <body>
+
     <!-- Header Section -->
     <header>
-        <div class="logo">
-            <img src="https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg" alt="Logo">
-        </div>
         <nav>
-            <a href="#">Home</a>
+            <a href="https://github.com/vivekmalli2002">GitHub</a>
             <a href="#">Digital Logic Designs</a>
             <a href="#">System Verilog Verification</a>
             <a href="#">UVM Verification</a>
-            <a href="#">Resume</a>
+            <a href="#resume">Resume</a>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <div class="hero">
-        <div>
-            <h1>Welcome to My Digital Verification Hub</h1>
-            <p>Take a look at my work and explore the verification process!</p>
-            <button class="cta-button">Explore Now</button>
-        </div>
+        <h1>Welcome to My Digital Verification Hub</h1>
+        <p>Explore my work in Digital Logic Designs, System Verilog, and UVM Verification.</p>
     </div>
 
-    <!-- Content Section -->
-    <div class="content">
-        <p>Discover how you can speed up your verification processes with the latest tools and techniques. Explore my work and the projects I’ve created over the years.</p>
+    <!-- Resume Section -->
+    <section class="resume-section" id="resume">
+        <h2>My Resume</h2>
+        <p>View my experience, skills, and projects.</p>
+        <a href="your-resume-link.pdf" target="_blank" class="resume-btn">View Resume</a>
+    </section>
+
+    <!-- Floating Chatbot -->
+    <div class="chatbot-skin">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Robot-icon.svg/1200px-Robot-icon.svg.png" width="100" height="100" alt="Chatbot">
+        <div class="chatbot-message">Hey, thanks for the visit!</div>
     </div>
 
     <!-- Footer Section -->
@@ -183,5 +201,4 @@
     </footer>
 
 </body>
-
 </html>
