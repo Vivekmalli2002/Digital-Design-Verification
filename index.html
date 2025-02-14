@@ -15,11 +15,9 @@
             --primary-color: #032174;
             --text-color: white;
             --bg-light: #f4f4f4;
-            --bg-dark: #121212;
             --footer-color: #032174;
             --cta-bg: white;
-            --cta-text: black ;
-            --button-color: white;
+            --cta-text: black;
         }
 
         * {
@@ -40,8 +38,7 @@
             color: white;
             padding: 20px 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
             position: relative;
             z-index: 10;
         }
@@ -49,10 +46,6 @@
         header nav {
             display: flex;
             gap: 20px;
-        }
-
-        header nav .dropdown {
-            position: relative;
         }
 
         header nav a {
@@ -65,39 +58,13 @@
         }
 
         header nav a:hover {
-            color: #466d7d;
-        }
-
-        /* Dropdown Styling */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: white;
-            min-width: 160px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            top: 100%;
-            left: 0;
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 10px 15px;
-            color: black;
-        }
-
-        .dropdown-content a:hover {
-            background: #ddd;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
+            color: #3c8eb0;
         }
 
         /* Hero Section */
         .hero {
             background: url('https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg') center/cover no-repeat;
-            height: 100vh;
+            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -123,19 +90,24 @@
         }
 
         .hero h1 {
-            font-size: 25px;
+            font-size: 30px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
             margin-bottom: 20px;
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 30px;
         }
 
-        /* CTA Button Style */
+        /* CTA Buttons */
+        .box {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
         .cta-button {
             background-color: var(--cta-bg);
             color: var(--cta-text);
@@ -144,13 +116,36 @@
             border: none;
             cursor: pointer;
             font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
             border-radius: 5px;
         }
 
         .cta-button:hover {
-            background-color: #3c8eb0;
+            background-color: #146673;
             transform: scale(1.1);
+        }
+
+        /* File Display Section */
+        #file-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #file-container h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .file-item {
+            font-size: 18px;
+            color: black;
+            background: #fff;
+            padding: 10px;
+            margin: 5px auto;
+            max-width: 400px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            user-select: none; /* Prevent text selection */
         }
 
         /* Footer */
@@ -161,24 +156,26 @@
             text-align: center;
         }
 
-        footer p {
-            font-size: 14px;
+        /* Disable Copy, Right-Click, and Keyboard Shortcuts */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
-        /* Mobile Responsive */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
                 align-items: center;
             }
 
-            header nav {
+            .box {
                 flex-direction: column;
-                gap: 10px;
             }
 
             .hero h1 {
-                font-size: 35px;
+                font-size: 25px;
             }
 
             .cta-button {
@@ -193,14 +190,7 @@
     <!-- Header Section -->
     <header>
         <nav>
-            <div class="dropdown">
-                <a href="#">Profile ▼</a>
-                <div class="dropdown-content">
-                    <a href="https://github.com/vivekmalli2002" target="_blank">GitHub</a>
-                    <a href="https://www.linkedin.com/in/vivek-malli-529790/" target="_blank">LinkedIn</a>
-                    <a href="https://udemy.com/user/yourprofile" target="_blank">Udemy</a>
-                </div>
-            </div>
+            <a href="#">Profile</a>
             <a href="#">Digital Logic Designs</a>
             <a href="#">System Verilog Verification</a>
             <a href="#">UVM Verification</a>
@@ -214,18 +204,49 @@
             <h1>Welcome to My Digital Verification Hub</h1>
             <p>Take a look at my work and explore the verification process!</p>
             <div class="box">
-                <button class="cta-button">Digital Designs</button>
-                <button class="cta-button">SV Verification</button>
-                <button class="cta-button">UVM Verification</button>
+                <button class="cta-button" onclick="showFiles('Digital-Logic-Designs')">Digital Designs</button>
+                <button class="cta-button" onclick="showFiles('SV-Verification')">SV Verification</button>
+                <button class="cta-button" onclick="showFiles('UVM-Verification')">UVM Verification</button>
             </div>
         </div>
     </div>
+
+    <!-- File Display Section -->
+    <div id="file-container"></div>
 
     <!-- Footer Section -->
     <footer>
         <p>&copy; 2025 Digital Verification Hub | Maintained by Vivek Malli</p>
     </footer>
 
-</body>
+    <!-- JavaScript for File Display and Security -->
+    <script>
+        function showFiles(category) {
+            let files = {
+                "Digital-Logic-Designs": ["Text.txt"],
+                "SV-Verification": ["Text.txt"],
+                "UVM-Verification": ["Text.txt"]
+            };
 
+            let container = document.getElementById("file-container");
+            container.innerHTML = "<h3>" + category.replace('-', ' ') + " Files</h3>";
+
+            files[category].forEach(file => {
+                let fileElement = document.createElement("div");
+                fileElement.classList.add("file-item");
+                fileElement.textContent = file;
+                container.appendChild(fileElement);
+            });
+        }
+
+        document.addEventListener("contextmenu", event => event.preventDefault());
+        document.addEventListener("keydown", event => {
+            if (event.ctrlKey && ["c", "s", "x", "u"].includes(event.key)) {
+                alert("Copying and saving is restricted!");
+                event.preventDefault();
+            }
+        });
+    </script>
+
+</body>
 </html>
