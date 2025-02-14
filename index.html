@@ -15,11 +15,11 @@
             --primary-color: #032174;
             --text-color: white;
             --bg-light: #f4f4f4;
-            --bg-dark: #121212;
             --footer-color: #032174;
             --cta-bg: white;
             --cta-text: black;
-            --button-color: white;
+            --popup-bg: white;
+            --popup-text: black;
         }
 
         * {
@@ -32,11 +32,6 @@
         body {
             background-color: var(--bg-light);
             color: var(--text-color);
-            /* Disable text selection globally */
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
 
         /* Header */
@@ -56,10 +51,6 @@
             gap: 20px;
         }
 
-        header nav .dropdown {
-            position: relative;
-        }
-
         header nav a {
             color: white;
             text-decoration: none;
@@ -71,32 +62,6 @@
 
         header nav a:hover {
             color: black;
-        }
-
-        /* Dropdown Styling */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: white;
-            min-width: 160px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            top: 100%;
-            left: 0;
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 10px 15px;
-            color: black;
-        }
-
-        .dropdown-content a:hover {
-            background: #ddd;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
         }
 
         /* Hero Section */
@@ -157,11 +122,41 @@
             font-weight: 600;
             transition: all 0.3s ease, transform 0.3s ease;
             border-radius: 5px;
+            position: relative;
         }
 
         .cta-button:hover {
             background-color: #2b9cad;
             transform: scale(1.1);
+        }
+
+        /* Popup Box */
+        .popup {
+            display: none;
+            position: absolute;
+            background: var(--popup-bg);
+            color: var(--popup-text);
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            width: 220px;
+            text-align: left;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .popup a {
+            display: block;
+            color: black;
+            padding: 8px 10px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .popup a:hover {
+            background: #ddd;
         }
 
         /* Footer */
@@ -170,46 +165,6 @@
             color: white;
             padding: 20px 0;
             text-align: center;
-        }
-
-        /* Modal Popup */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 500px;
-            text-align: center;
-            color: black;
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            font-size: 28px;
-            cursor: pointer;
-        }
-
-        .file-item {
-            font-size: 18px;
-            background: #fff;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            user-select: none;
         }
 
         /* Responsive */
@@ -230,14 +185,7 @@
     <!-- Header Section -->
     <header>
         <nav>
-            <div class="dropdown">
-                <a href="#">Profile ▼</a>
-                <div class="dropdown-content">
-                    <a href="https://github.com/vivekmalli2002" target="_blank">GitHub</a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-                    <a href="https://udemy.com/user/yourprofile" target="_blank">Udemy</a>
-                </div>
-            </div>
+            <a href="#">Profile</a>
             <a href="#">Digital Logic Designs</a>
             <a href="#">System Verilog Verification</a>
             <a href="#">UVM Verification</a>
@@ -251,9 +199,9 @@
             <h1>Welcome to My Digital Verification Hub</h1>
             <p>Take a look at my work and explore the verification process!</p>
             <div class="box">
-                <button class="cta-button" onclick="showModal('Digital-Logic-Designs')">Digital Designs</button>
-                <button class="cta-button" onclick="showModal('SV-Verification')">SV Verification</button>
-                <button class="cta-button" onclick="showModal('UVM-Verification')">UVM Verification</button>
+                <button class="cta-button" onmouseover="showPopup('Digital-Logic-Designs', event)" onmouseleave="hidePopup()">Digital Designs</button>
+                <button class="cta-button" onmouseover="showPopup('SV-Verification', event)" onmouseleave="hidePopup()">SV Verification</button>
+                <button class="cta-button" onmouseover="showPopup('UVM-Verification', event)" onmouseleave="hidePopup()">UVM Verification</button>
             </div>
         </div>
     </div>
@@ -263,26 +211,47 @@
         <p>&copy; 2025 Digital Verification Hub | Maintained by Vivek Malli</p>
     </footer>
 
-    <!-- Modal -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 id="modal-title"></h2>
-            <div id="modal-files"></div>
-        </div>
-    </div>
+    <!-- Popup for Files -->
+    <div id="popup" class="popup"></div>
 
-    <!-- JavaScript for Modal -->
+    <!-- JavaScript for Popup -->
     <script>
-        function showModal(category) {
-            document.getElementById("modal").style.display = "block";
-            document.getElementById("modal-title").textContent = category + " Files";
+        // File Data Mapping (Replace with actual file links)
+        const fileData = {
+            "Digital-Logic-Designs": [
+                { name: "FIFO_Design.txt", link: "files/Digital-Logic-Designs/FIFO_Design.txt" },
+                { name: "MUX_Design.txt", link: "files/Digital-Logic-Designs/MUX_Design.txt" }
+            ],
+            "SV-Verification": [
+                { name: "Testbench.sv", link: "files/SV-Verification/Testbench.sv" },
+                { name: "Assertions.sv", link: "files/SV-Verification/Assertions.sv" }
+            ],
+            "UVM-Verification": [
+                { name: "uvm_test.sv", link: "files/UVM-Verification/uvm_test.sv" },
+                { name: "uvm_sequence.sv", link: "files/UVM-Verification/uvm_sequence.sv" }
+            ]
+        };
+
+        function showPopup(category, event) {
+            const popup = document.getElementById("popup");
+            popup.innerHTML = "";
+
+            fileData[category].forEach(file => {
+                let linkElement = document.createElement("a");
+                linkElement.href = file.link;
+                linkElement.target = "_blank";
+                linkElement.textContent = file.name;
+                popup.appendChild(linkElement);
+            });
+
+            popup.style.display = "block";
+            popup.style.top = (event.target.offsetTop + event.target.offsetHeight) + "px";
+            popup.style.left = (event.target.offsetLeft + event.target.offsetWidth / 2) + "px";
         }
 
-        function closeModal() {
-            document.getElementById("modal").style.display = "none";
+        function hidePopup() {
+            document.getElementById("popup").style.display = "none";
         }
     </script>
-
 </body>
 </html>
