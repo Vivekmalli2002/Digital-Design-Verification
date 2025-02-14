@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +37,7 @@
         header {
             background-color: var(--primary-color);
             color: white;
-            padding: 20px 0;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -46,12 +45,12 @@
             z-index: 10;
         }
 
-        header nav {
+        .nav-links {
             display: flex;
             gap: 20px;
         }
 
-        header nav a {
+        .nav-links a {
             color: white;
             text-decoration: none;
             font-size: 16px;
@@ -60,14 +59,33 @@
             transition: all 0.3s ease;
         }
 
-        header nav a:hover {
+        .nav-links a:hover {
             color: black;
+        }
+
+        /* Profile Section */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .profile span {
+            font-size: 16px;
+            font-weight: bold;
         }
 
         /* Hero Section */
         .hero {
             background: url('https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg') center/cover no-repeat;
-            height: 100vh;
+            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -136,14 +154,14 @@
             position: absolute;
             background: var(--popup-bg);
             color: var(--popup-text);
-            padding: 15px;
+            padding: 10px;
             border-radius: 5px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            width: 220px;
+            width: 200px;
             text-align: left;
-            top: 50px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 50%;
+            left: 105%;
+            transform: translateY(-50%);
             z-index: 1000;
         }
 
@@ -163,7 +181,7 @@
         footer {
             background-color: var(--footer-color);
             color: white;
-            padding: 20px 0;
+            padding: 20px;
             text-align: center;
         }
 
@@ -184,13 +202,16 @@
 <body>
     <!-- Header Section -->
     <header>
-        <nav>
-            <a href="#">Profile</a>
+        <nav class="nav-links">
             <a href="#">Digital Logic Designs</a>
             <a href="#">System Verilog Verification</a>
             <a href="#">UVM Verification</a>
             <a href="#">Resume</a>
         </nav>
+        <div class="profile">
+            <img src="your-profile-image.jpg" alt="Profile">
+            <span>Vivek Malli</span>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -245,8 +266,8 @@
             });
 
             popup.style.display = "block";
-            popup.style.top = (event.target.offsetTop + event.target.offsetHeight) + "px";
-            popup.style.left = (event.target.offsetLeft + event.target.offsetWidth / 2) + "px";
+            popup.style.top = `${event.target.offsetTop}px`;
+            popup.style.left = `${event.target.offsetLeft + event.target.offsetWidth + 10}px`;
         }
 
         function hidePopup() {
