@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,10 @@
             --primary-color: #032174;
             --text-color: white;
             --bg-light: #f4f4f4;
+            --bg-dark: #121212;
             --footer-color: #032174;
+            --cta-bg: #ffcc00;
+            --cta-text: #032174;
         }
 
         * {
@@ -26,90 +30,126 @@
 
         body {
             background-color: var(--bg-light);
-            color: black;
+            color: var(--text-color);
         }
 
-        /* Centered Header */
+        /* Header */
         header {
             background-color: var(--primary-color);
             color: white;
-            padding: 15px 0;
-            text-align: center;
+            padding: 20px 0;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .logo img {
-            width: 150px;
+        header .logo img {
+            width: 200px;
             height: auto;
             border-radius: 8px;
         }
 
-        nav {
-            margin-top: 10px;
-        }
-
-        nav a {
-            text-decoration: none;
+        header nav a {
             color: white;
+            margin: 0 20px;
+            text-decoration: none;
             font-size: 16px;
-            font-weight: bold;
-            padding: 10px 15px;
-            margin: 0 10px;
+            font-weight: 600;
             transition: all 0.3s ease;
-            display: inline-block;
         }
 
-        nav a:hover {
-            background: white;
-            color: var(--primary-color);
-            border-radius: 5px;
+        header nav a:hover {
+            color: #ffcc00;
         }
 
         /* Hero Section */
         .hero {
+            background: url('https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg') center/cover no-repeat;
+            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            height: 75vh;
-            background: linear-gradient(135deg, #032174, #0056b3);
-            color: white;
             text-align: center;
-            padding: 20px;
+            color: white;
         }
 
         .hero h1 {
-            font-size: 40px;
+            font-size: 50px;
             font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
         }
 
         .hero p {
-            font-size: 16px;
-            margin-bottom: 20px;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: var(--cta-bg);
+            color: var(--cta-text);
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #e0a800;
+        }
+
+        /* Content Section */
+        .content {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .content h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .content p {
+            font-size: 18px;
+            color: #333;
         }
 
         /* Footer */
         footer {
             background-color: var(--footer-color);
             color: white;
-            padding: 15px 0;
+            padding: 20px 0;
             text-align: center;
         }
 
         footer p {
-            font-size: 12px;
+            font-size: 14px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .content h2 {
+                font-size: 28px;
+            }
+
+            .cta-button {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Header Section (Centered) -->
+    <!-- Header Section -->
     <header>
         <div class="logo">
             <img src="https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg" alt="Logo">
@@ -125,8 +165,17 @@
 
     <!-- Hero Section -->
     <div class="hero">
-        <h1>Welcome to My Digital Verification Hub</h1>
-        <p>Take a look at my work and explore the verification process!</p>
+        <div>
+            <h1>Welcome to My Digital Verification Hub</h1>
+            <p>Take a look at my work and explore the verification process!</p>
+            <button class="cta-button">Explore Now</button>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h2>GitHub Copilot is now available for free</h2>
+        <p>Discover how you can speed up your verification processes with the latest tools and techniques. Explore my work and the projects I’ve created over the years.</p>
     </div>
 
     <!-- Footer Section -->
@@ -135,4 +184,5 @@
     </footer>
 
 </body>
+
 </html>
