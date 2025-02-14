@@ -82,11 +82,11 @@
         }
 
         .hero h1 {
-            font-size: 20px;
+            font-size: 25px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             position: relative;
             z-index: 2;
         }
@@ -139,7 +139,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin: 20px auto;
-            max-width: 500px; /* Adjust width as needed */
+            max-width: 300px; /* Reduced width */
             text-align: center;
             position: relative; /* Ensure it sits above the background */
             z-index: 2; /* Ensure box is above the overlay */
@@ -152,17 +152,24 @@
         }
 
         /* Sub-Block Style */
+        .sub-blocks {
+            display: flex; /* Use flexbox for horizontal layout */
+            justify-content: space-between; /* Space between sub-blocks */
+            margin-top: 10px; /* Space above sub-blocks */
+        }
+
         .sub-block {
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 15px;
-            margin: 10px 0;
-            text-align: left;
+            flex: 1; /* Allow sub-blocks to grow equally */
+            margin: 0 5px; /* Space between sub-blocks */
+            text-align: center; /* Center text in sub-blocks */
         }
 
         .sub-block h4 {
-            font-size: 15px;
+            font-size: 20px;
             margin-bottom: 10px;
             color: var(--primary-color);
         }
@@ -198,6 +205,18 @@
                 font-size: 16px;
                 padding: 12px 25px;
             }
+
+            .box {
+                max-width: 90%; /* Make box wider on smaller screens */
+            }
+
+            .sub-block {
+                margin: 5px 0; /* Stack sub-blocks vertically on small screens */
+            }
+
+            .sub-blocks {
+                flex-direction: column; /* Change to column layout on small screens */
+            }
         }
     </style>
 </head>
@@ -221,9 +240,18 @@
             <h1>Welcome to My Digital Verification Hub</h1>
             <p>Take a look at my work and explore the verification process!</p>
             <button class="cta-button">Explore Now</button>
-            <!-- Box Example -->
-            <div class="box">
-                <h2>My Services</h2>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h2>GitHub Copilot is now available for free</h2>
+        <p>Discover how you can speed up your verification processes with the latest tools and techniques. Explore my work and the projects I’ve created over the years.</p>
+        
+        <!-- Box Example -->
+        <div class="box">
+            <h3>My Services</h3>
+            <div class="sub-blocks">
                 <div class="sub-block">
                     <h4>SV Verification</h4>
                     <p>Details about SV Verification services offered.</p>
