@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +15,11 @@
             --primary-color: #032174;
             --text-color: white;
             --bg-light: #f4f4f4;
+            --bg-dark: #121212;
             --footer-color: #032174;
             --cta-bg: white;
             --cta-text: black;
-            --popup-bg: white;
-            --popup-text: black;
+            --button-color: white;
         }
 
         * {
@@ -37,7 +38,7 @@
         header {
             background-color: var(--primary-color);
             color: white;
-            padding: 20px;
+            padding: 20px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -45,12 +46,16 @@
             z-index: 10;
         }
 
-        .nav-links {
+        header nav {
             display: flex;
             gap: 20px;
         }
 
-        .nav-links a {
+        header nav .dropdown {
+            position: relative;
+        }
+
+        header nav a {
             color: white;
             text-decoration: none;
             font-size: 16px;
@@ -59,33 +64,40 @@
             transition: all 0.3s ease;
         }
 
-        .nav-links a:hover {
+        header nav a:hover {
             color: black;
         }
 
-        /* Profile Section */
-        .profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        /* Dropdown Styling */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 160px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
         }
 
-        .profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid white;
+        .dropdown-content a {
+            display: block;
+            padding: 10px 15px;
+            color: black;
         }
 
-        .profile span {
-            font-size: 16px;
-            font-weight: bold;
+        .dropdown-content a:hover {
+            background: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
 
         /* Hero Section */
         .hero {
             background: url('https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg') center/cover no-repeat;
-            height: 80vh;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -123,13 +135,7 @@
             margin-bottom: 30px;
         }
 
-        /* CTA Button */
-        .box {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
+        /* CTA Button Style */
         .cta-button {
             background-color: var(--cta-bg);
             color: var(--cta-text);
@@ -138,9 +144,8 @@
             border: none;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s ease, transform 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
             border-radius: 5px;
-            position: relative;
         }
 
         .cta-button:hover {
@@ -148,47 +153,32 @@
             transform: scale(1.1);
         }
 
-        /* Popup Box */
-        .popup {
-            display: none;
-            position: absolute;
-            background: var(--popup-bg);
-            color: var(--popup-text);
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            width: 200px;
-            text-align: left;
-            top: 50%;
-            left: 105%;
-            transform: translateY(-50%);
-            z-index: 1000;
-        }
-
-        .popup a {
-            display: block;
-            color: black;
-            padding: 8px 10px;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .popup a:hover {
-            background: #ddd;
-        }
-
         /* Footer */
         footer {
             background-color: var(--footer-color);
             color: white;
-            padding: 20px;
+            padding: 20px 0;
             text-align: center;
         }
 
-        /* Responsive */
+        footer p {
+            font-size: 14px;
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
             .hero h1 {
-                font-size: 20px;
+                font-size: 35px;
             }
 
             .cta-button {
@@ -202,16 +192,20 @@
 <body>
     <!-- Header Section -->
     <header>
-        <nav class="nav-links">
+        <nav>
+            <div class="dropdown">
+                <a href="#">Profile ▼</a>
+                <div class="dropdown-content">
+                    <a href="https://github.com/vivekmalli2002" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                    <a href="https://udemy.com/user/yourprofile" target="_blank">Udemy</a>
+                </div>
+            </div>
             <a href="#">Digital Logic Designs</a>
             <a href="#">System Verilog Verification</a>
             <a href="#">UVM Verification</a>
             <a href="#">Resume</a>
         </nav>
-        <div class="profile">
-            <img src="your-profile-image.jpg" alt="Profile">
-            <span>Vivek Malli</span>
-        </div>
     </header>
 
     <!-- Hero Section -->
@@ -220,57 +214,18 @@
             <h1>Welcome to My Digital Verification Hub</h1>
             <p>Take a look at my work and explore the verification process!</p>
             <div class="box">
-                <a href="digital-logic-files.html"><button class="cta-button" onmouseover="showPopup('Digital-Logic-Designs', event)" onmouseleave="hidePopup()">Digital Designs</button></a>
-                <a href="sv-verification-files.html"><button class="cta-button" onmouseover="showPopup('SV-Verification', event)" onmouseleave="hidePopup()">SV Verification</button></a>
-                <a href="uvm-verification-files.html"><button class="cta-button" onmouseover="showPopup('UVM-Verification', event)" onmouseleave="hidePopup()">UVM Verification</button></a>
+                <button class="cta-button">Digital Designs</button>
+                <button class="cta-button">SV Verification</button>
+                <button class="cta-button">UVM Verification</button>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer>
         <p>&copy; 2025 Digital Verification Hub | Maintained by Vivek Malli</p>
     </footer>
 
-    <!-- Popup for Files -->
-    <div id="popup" class="popup"></div>
-
-    <!-- JavaScript for Popup -->
-    <script>
-        // File Data Mapping (Replace with actual file links)
-        const fileData = {
-            "Digital-Logic-Designs": [
-                { name: "FIFO_Design.txt", link: "files/Digital-Logic-Designs/FIFO_Design.txt" },
-                { name: "MUX_Design.txt", link: "files/Digital-Logic-Designs/MUX_Design.txt" }
-            ],
-            "SV-Verification": [
-                { name: "Testbench.sv", link: "files/SV-Verification/Testbench.sv" },
-                { name: "Assertions.sv", link: "files/SV-Verification/Assertions.sv" }
-            ],
-            "UVM-Verification": [
-                { name: "uvm_test.sv", link: "files/UVM-Verification/uvm_test.sv" },
-                { name: "uvm_sequence.sv", link: "files/UVM-Verification/uvm_sequence.sv" }
-            ]
-        };
-
-        function showPopup(category, event) {
-            const popup = document.getElementById("popup");
-            popup.innerHTML = "";
-
-            fileData[category].forEach(file => {
-                let linkElement = document.createElement("a");
-                linkElement.href = file.link;
-                linkElement.target = "_blank";
-                linkElement.textContent = file.name;
-                popup.appendChild(linkElement);
-            });
-
-            popup.style.display = "block";
-        }
-
-        function hidePopup() {
-            document.getElementById("popup").style.display = "none";
-        }
-    </script>
 </body>
+
 </html>
