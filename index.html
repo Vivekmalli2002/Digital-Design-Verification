@@ -7,7 +7,7 @@
 
     <!-- Google Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
         :root {
@@ -27,7 +27,7 @@
         body {
             background-color: var(--bg-light);
             color: black;
-            overflow-x: hidden; /* Prevents horizontal scroll */
+            overflow-x: hidden;
         }
 
         /* Centered Header */
@@ -118,19 +118,26 @@
             background: #0045a3;
         }
 
-        /* Floating Chatbot */
-        .chatbot-skin {
+        /* 3D Floating Chatbot */
+        .chatbot-container {
             position: absolute;
-            width: 120px;
-            height: 120px;
+            width: 200px;
+            height: 200px;
             bottom: 50px;
             right: 50px;
-            transition: transform 3s ease-in-out;
+            z-index: 10;
+            animation: floatUpDown 5s infinite ease-in-out;
+        }
+
+        @keyframes floatUpDown {
+            0% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateY(180deg); }
+            100% { transform: translateY(0px) rotateY(360deg); }
         }
 
         .chatbot-message {
             position: absolute;
-            bottom: 130px;
+            bottom: 220px;
             left: -10px;
             background: white;
             color: black;
@@ -169,8 +176,8 @@
         <a href="your-resume-link.pdf" target="_blank" class="resume-btn">View Resume</a>
     </section>
 
-    <!-- Floating Chatbot -->
-    <div class="chatbot-skin" id="chatbot">
+    <!-- 3D Floating Chatbot -->
+    <div class="chatbot-container">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWTZMrmJ2toLb4RCvofsQb3e3dqgenKzkcDtFz092kBgYDl8-9BXK_o8gUo1xeXvu2M7g&usqp=CAU" width="120" height="120" alt="Chatbot">
         <div class="chatbot-message">Hey, thanks for the visit!</div>
     </div>
@@ -179,21 +186,6 @@
     <footer>
         <p>&copy; 2025 Digital Verification Hub | Maintained by Vivek Malli</p>
     </footer>
-
-    <script>
-        function moveChatbot() {
-            const chatbot = document.getElementById("chatbot");
-            const maxWidth = window.innerWidth - 150; // Keeps chatbot within the page width
-            const maxHeight = window.innerHeight - 200; // Keeps chatbot within the page height
-
-            const newX = Math.random() * maxWidth;
-            const newY = Math.random() * maxHeight;
-
-            chatbot.style.transform = `translate(${newX}px, ${newY}px)`;
-        }
-
-        setInterval(moveChatbot, 3000); // Move every 3 seconds
-    </script>
 
 </body>
 </html>
