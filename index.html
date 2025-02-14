@@ -32,6 +32,11 @@
         body {
             background-color: var(--bg-light);
             color: var(--text-color);
+            /* Disable text selection globally */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         /* Header */
@@ -135,7 +140,13 @@
             margin-bottom: 30px;
         }
 
-        /* CTA Button Style */
+        /* CTA Button */
+        .box {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
         .cta-button {
             background-color: var(--cta-bg);
             color: var(--cta-text);
@@ -144,7 +155,7 @@
             border: none;
             cursor: pointer;
             font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease, transform 0.3s ease;
             border-radius: 5px;
         }
 
@@ -161,24 +172,50 @@
             text-align: center;
         }
 
-        footer p {
-            font-size: 14px;
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
         }
 
-        /* Mobile Responsive */
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            text-align: center;
+            color: black;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .file-item {
+            font-size: 18px;
+            background: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            user-select: none;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            header nav {
-                flex-direction: column;
-                gap: 10px;
-            }
-
             .hero h1 {
-                font-size: 35px;
+                font-size: 20px;
             }
 
             .cta-button {
@@ -214,18 +251,38 @@
             <h1>Welcome to My Digital Verification Hub</h1>
             <p>Take a look at my work and explore the verification process!</p>
             <div class="box">
-                <button class="cta-button">Digital Designs</button>
-                <button class="cta-button">SV Verification</button>
-                <button class="cta-button">UVM Verification</button>
+                <button class="cta-button" onclick="showModal('Digital-Logic-Designs')">Digital Designs</button>
+                <button class="cta-button" onclick="showModal('SV-Verification')">SV Verification</button>
+                <button class="cta-button" onclick="showModal('UVM-Verification')">UVM Verification</button>
             </div>
         </div>
     </div>
 
-    <!-- Footer Section -->
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Digital Verification Hub | Maintained by Vivek Malli</p>
     </footer>
 
-</body>
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-files"></div>
+        </div>
+    </div>
 
+    <!-- JavaScript for Modal -->
+    <script>
+        function showModal(category) {
+            document.getElementById("modal").style.display = "block";
+            document.getElementById("modal-title").textContent = category + " Files";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
+
+</body>
 </html>
