@@ -20,9 +20,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: all 0.3s ease-in-out; }
         body { background: var(--bg-light); color: black; }
 
-        /* Dark Theme */
-        .dark-theme { background: var(--bg-dark); color: var(--text-color); }
-
         /* Navigation Bar */
         .navbar { 
             display: flex; 
@@ -31,69 +28,84 @@
             background: var(--primary-color); 
             padding: 10px 20px; 
             color: white; 
-            height: 100px; 
+            height: 80px; 
         }
 
-        /* Logo Image (Top Left Corner, Large) */
+        /* Logo */
         .logo img { 
-            width: 450px; /* Large image */
+            width: 200px; 
             height: auto; 
             border-radius: 5px; 
         }
 
-        /* Left-Side Menu */
-        .left-menu { 
-            display: flex; 
-            gap: 15px; 
+        /* Dynamic Home Page Description */
+        .home-description {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 30px;
         }
 
-        /* Dropdown Styling */
-        .dropbtn { 
-            background: none; 
-            border: none; 
-            color: white; 
-            font-size: 18px; 
-            cursor: pointer; 
-            padding: 8px 12px; 
+        .dynamic-label {
+            font-family: "Mona Sans", sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #0366d6;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 5px;
+            background: rgba(3, 97, 214, 0.1);
         }
 
-        .dropdown { position: relative; display: inline-block; }
-        .dropdown-content { display: none; position: absolute; background: white; color: black; min-width: 180px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); z-index: 10; }
-        .dropdown-content a { color: black; padding: 10px 15px; display: block; text-decoration: none; }
-        .dropdown-content a:hover { background: #ddd; }
-        .dropdown:hover .dropdown-content { display: block; }
+        /* Resume Section */
+        .resume-section {
+            background: linear-gradient(135deg, #032174, #0056b3);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: 12px;
+            margin: 20px auto;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+        }
 
-        /* Submenu (Floating) */
-        .sub-dropdown { position: relative; }
-        .sub-dropdown-content { display: none; position: absolute; left: 100%; top: 0; background: white; min-width: 180px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); z-index: 10; }
-        .sub-dropdown:hover .sub-dropdown-content { display: block; }
+        .resume-section h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
 
-        /* Profile Section */
-        .profile { display: flex; align-items: center; gap: 10px; }
-        .profile img { width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; }
+        .resume-section p {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .resume-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: #0056b3;
+            border: 2px solid white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .resume-btn:hover {
+            background: #0045a3;
+        }
 
         /* Footer */
-        .footer { background: var(--primary-color); color: white; padding: 20px; text-align: center; font-size: 16px; }
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
     </style>
-
-    <!-- Security Script (Disable Copy, Right Click, and Keyboard Shortcuts) -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Disable Right Click
-            document.addEventListener("contextmenu", event => event.preventDefault());
-
-            // Disable Text Selection
-            document.addEventListener("selectstart", event => event.preventDefault());
-
-            // Disable Keyboard Shortcuts for Copy, Cut, Save, Inspect
-            document.addEventListener("keydown", function (event) {
-                if (event.ctrlKey && (event.key === "c" || event.key === "x" || event.key === "s" || event.key === "u")) {
-                    alert("Copying and inspecting is disabled!");
-                    event.preventDefault();
-                }
-            });
-        });
-    </script>
 </head>
 <body>
 
@@ -102,51 +114,19 @@
         <div class="logo">
             <img src="https://chipedge.com/wp-content/uploads/2024/03/intricate-microelectronic-motherboard-processor-background-showcasing-complexity-sophistication-modern-technology-generative-ai-2-scaled.jpg" alt="Logo">
         </div>
-
-        <div class="left-menu">
-            <div class="dropdown">
-                <button class="dropbtn">GitHub ▼</button>
-                <div class="dropdown-content">
-                    <a href="https://github.com/vivekmalli2002">My GitHub</a>
-                    <a href="https://github.com/vivekmalli2002/Digital-Design-Verification">Repository</a>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <button class="dropbtn">Digital Logic Designs ▼</button>
-                <div class="dropdown-content">
-                    <div class="sub-dropdown">
-                        <a href="#">Combinational Logic ▶</a>
-                        <div class="sub-dropdown-content">
-                            <a href="https://github.com/vivekmalli2002/Digital-Design-Verification/blob/main/FIFO_Design.txt" target="_blank">FIFO_Design.txt</a>
-                        </div>
-                    </div>
-                    <a href="#">Sequential Logic</a>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <button class="dropbtn">System Verilog Verification ▼</button>
-                <div class="dropdown-content">
-                    <a href="#">Assertions</a>
-                    <a href="#">Testbench</a>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <button class="dropbtn">UVM Verification ▼</button>
-                <div class="dropdown-content">
-                    <a href="#">UVM Basics</a>
-                    <a href="#">UVM Sequences</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="profile">
-            <img src="your-profile-image.jpg" alt="Profile Picture">
-            <span>Your Name</span>
-        </div>
     </header>
+
+    <!-- Dynamic Home Page Description -->
+    <div class="home-description">
+        <span class="dynamic-label">Welcome to the Page and have a look on my work packages</span>
+    </div>
+
+    <!-- Resume Section -->
+    <div class="resume-section">
+        <h1>My Resume</h1>
+        <p>Explore my skills, experience, and projects.</p>
+        <a href="your-resume-link.pdf" target="_blank" class="resume-btn">View Resume</a>
+    </div>
 
     <!-- Footer -->
     <div class="footer">
